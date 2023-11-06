@@ -5,8 +5,8 @@ from datetime import datetime
 import os
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
-
-
+#from sklearn.externals import joblib
+import joblib
 # obtener parámetros:
 parser = argparse.ArgumentParser("logistic_regression")
 parser.add_argument("--training_data", type=str, help="Path to training data")
@@ -14,8 +14,18 @@ parser.add_argument("--model_output", type=str, help="Path of output model")
 
 args = parser.parse_args()
 
+lines = [
+    f"Training data path: {args.training_data}",
+    f"Model output path: {args.model_output}",
+]
 
-# TODO: guardar el modelo real en .pkl
+print("Parametros: ...")
+
+# imprimir parámetros:
+
+for line in lines:
+    print(line)
+    
 
 # Create a binary classification model (Logistic Regression in this case)
 model = LogisticRegression()
@@ -26,4 +36,6 @@ y_train = data['Potability']
 
 model.fit(X_train, y_train)
 
-(Path(args.model_output) / "model.txt").write_text(model)
+
+joblib.dump(model, (Path(args.model_output) / "logistic_model.pkl"))
+
