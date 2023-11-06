@@ -6,6 +6,7 @@ import pandas as pd
 #from sklearn.externals import joblib
 import joblib
 import numpy as np
+from numpy import save
 
 parser = argparse.ArgumentParser("logistic_score")
 parser.add_argument("--model_input", type=str, help="Path of input model")
@@ -41,5 +42,6 @@ y_test = data['Potability']
 y_pred = model.predict(X_test)
 print("y_pred: ", y_pred)
 
-file_score = (Path(args.score_output) / "logistic_score.csv")
-pd.Series(y_pred).to_csv(file_score)
+file_score = (Path(args.score_output) / "logistic_score.npy")
+
+save(file_score, y_pred)

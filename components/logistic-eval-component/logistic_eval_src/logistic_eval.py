@@ -3,6 +3,12 @@ from pathlib import Path
 from datetime import datetime
 import numpy as np
 import pandas as pd
+from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.datasets import load_iris
+from numpy import load
+import matplotlib.pyplot as plt
+
 
 parser = argparse.ArgumentParser("logistic_eval")
 parser.add_argument("--scoring_result", type=str, help="Path of scoring result")
@@ -22,10 +28,9 @@ lines = [
 for line in lines:
     print(line)
 
-file_score = (Path(args.scoring_result) / "logistic_score.csv")
-data = pd.read_csv(file_score)
+file_score = (Path(args.scoring_result) / "logistic_score.npy")
+y_pred = load(file_score)
 
-y_pred = data.to_numpy()
 
 print(y_pred)
 
