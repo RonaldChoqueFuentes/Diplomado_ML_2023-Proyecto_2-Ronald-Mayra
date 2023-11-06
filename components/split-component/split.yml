@@ -1,0 +1,22 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+
+name: split
+display_name: split
+type: command
+
+inputs:
+  clean_data: 
+    type: uri_file
+outputs:
+  training_data:
+    type: uri_file
+  testing_data:
+    type: uri_file
+
+code: ./split_src
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1
+command: >-
+  python split.py 
+  --clean_data ${{inputs.clean_data}} 
+  --training_data ${{outputs.training_data}}
+  --testing_data ${{outputs.testing_data}}
