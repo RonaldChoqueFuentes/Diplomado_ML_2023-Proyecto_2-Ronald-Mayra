@@ -9,3 +9,7 @@
    3.4 Set  workspace Name
 4. Excecute requirements.ipynb
 5. Excecute orchestrator.ipynb
+
+Pipeline Model
+
+![Alt text](image.png)
