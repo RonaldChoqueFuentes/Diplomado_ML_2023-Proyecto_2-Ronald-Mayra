@@ -1,23 +1,23 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
 
-name: logistic_eval
-display_name: Logistic Eval
+name: score_modek
+display_name: Score
 type: command
 
 inputs:
-  scoring_result:
+  model_input:
     type: uri_folder
   test_data:
     type: uri_file
 
 outputs:
-  eval_output:
+  score_output:
     type: uri_folder
 
 environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1
-code: ./logistic_eval_src
+code: ./score_src
 command: >-
-  python logistic_eval.py 
-  --scoring_result ${{inputs.scoring_result}} 
-  --test_data ${{inputs.test_data}} 
-  --eval_output ${{outputs.eval_output}}
+  python score.py 
+  --model_input ${{inputs.model_input}} 
+  --test_data ${{inputs.test_data}}
+  --score_output ${{outputs.score_output}}

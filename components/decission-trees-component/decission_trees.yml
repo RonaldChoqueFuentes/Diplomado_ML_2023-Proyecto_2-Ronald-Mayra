@@ -1,0 +1,19 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+
+name: decission_trees
+display_name: Decission Trees
+type: command
+
+inputs:
+  training_data: 
+    type: uri_file
+outputs:
+  model_output:
+    type: uri_folder
+
+code: ./decission_trees_src
+environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu:1
+command: >-
+  python decission_trees.py 
+  --training_data ${{inputs.training_data}} 
+  --model_output ${{outputs.model_output}}

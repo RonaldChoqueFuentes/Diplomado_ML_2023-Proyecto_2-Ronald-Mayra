@@ -8,7 +8,7 @@ import joblib
 import numpy as np
 from numpy import save
 
-parser = argparse.ArgumentParser("logistic_score")
+parser = argparse.ArgumentParser("score")
 parser.add_argument("--model_input", type=str, help="Path of input model")
 parser.add_argument("--test_data", type=str, help="Path to test data")
 parser.add_argument("--score_output", type=str, help="Path of scoring output")
@@ -28,7 +28,7 @@ for line in lines:
 
 # cargar el modelo dummy desde el archivo de texto:
 
-joblib_file = (Path(args.model_input) / "logistic_model.pkl")
+joblib_file = (Path(args.model_input) / "training_model.pkl")
 model = joblib.load(joblib_file)
 
 print("Model: ", model)
@@ -42,6 +42,6 @@ y_test = data['Potability']
 y_pred = model.predict(X_test)
 print("y_pred: ", y_pred)
 
-file_score = (Path(args.score_output) / "logistic_score.npy")
+file_score = (Path(args.score_output) / "score.npy")
 
 save(file_score, y_pred)

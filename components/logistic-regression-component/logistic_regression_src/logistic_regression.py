@@ -37,5 +37,5 @@ y_train = data['Potability']
 model.fit(X_train, y_train)
 
 
-joblib.dump(model, (Path(args.model_output) / "logistic_model.pkl"))
+joblib.dump(model, (Path(args.model_output) / "training_model.pkl"))
 

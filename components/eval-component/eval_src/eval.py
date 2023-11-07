@@ -28,7 +28,7 @@ lines = [
 for line in lines:
     print(line)
 
-file_score = (Path(args.scoring_result) / "logistic_score.npy")
+file_score = (Path(args.scoring_result) / "score.npy")
 y_pred = load(file_score)
 
 
